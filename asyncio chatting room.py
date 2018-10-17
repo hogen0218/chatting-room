@@ -31,7 +31,7 @@ class ChatSession(asynchat.async_chat):
         self.coming()
 
     def coming(self):
-        data = '{}进入聊天室'.format(self.username)
+        data = '{} join the chatting room quietly'.format(self.username)
         self.broadcast(data)
 
     def collect_incoming_data(self, data):
@@ -41,7 +41,7 @@ class ChatSession(asynchat.async_chat):
             self.broadcast(msg)
 
     def found_terminator(self):
-        print('客户out')
+        print('client out')
         self.close_when_done()
         self.remove_client()
 
@@ -50,7 +50,7 @@ class ChatSession(asynchat.async_chat):
         self.user_go()
 
     def user_go(self):
-        data = '{}离开聊天室'.format(self.username)
+        data = '{} leave the chatting room quietly'.format(self.username)
         self.broadcast(data)
 
     def broadcast(self,data):
